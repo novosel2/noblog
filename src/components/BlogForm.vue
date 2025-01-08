@@ -24,7 +24,7 @@ const handleSubmit = async () => {
 	
 	try {
 		await axios.post('https://localhost:8000/api/articles/create-article', newBlog);
-		emit('new-blog-created', newBlog);
+		emit('new-blog-created');
 	} catch (error) {
 		console.error('Error adding new blog', error);
 	}
@@ -62,11 +62,17 @@ const handleSubmit = async () => {
 	
 	textarea {
 		width: 100%; 
-		height: 100px
+		height: 100px;
+		padding: 5px 0 0 5px;
 	}
 	
 	select {
 		width: 120px; 
 		margin-bottom: 10px
+	}
+	
+	label {
+		display: inline-block;
+		width: 40px;
 	}
 </style>
