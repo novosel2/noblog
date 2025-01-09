@@ -1,22 +1,48 @@
 <script setup>
-defineProps({
-	isVisible: true,
+import { reactive } from 'vue';
+
+const emit = defineEmits();
+
+const props = defineProps({
 	blog: Object
 });
 
-const closeModal = () => {
-	isVisible = false;
+const state = reactive({
+	title: props.blog.title,
+	content: props.blog.content,
+	tag: props.blog.tag
+})
+
+const closePopout = () => {
+	emit('close-popout');
+}
+
+const savePost = () => {
+	emit('save-blog', state);
 }
 </script>
 
 <template>
-	<div v-if="isVisible" class="popout">
+	<div class="popout">
     <div class="popout-content">
-      <button @click="closeModal" class="close-btn">X</button>
+      <button @click="closePopout" class="close-btn">X</button>
       <h3>Edit Post</h3>
-			<input :value="blog.title"/>
-      <textarea v-model="postContent" placeholder="Edit your post here..."></textarea>
-      <button @click="savePost">Save</button>
+			<div class="form-group">
+				<label>Title: </label>
+				<input v-model="state.title" />
+			</div>
+			<div class="form-group">
+				<label>Tag: </label>
+				<select v-model="state.tag">
+					<option>General</option>
+					<option>Work</option>
+					<option>Hobby</option>
+					<option>Food</option>
+					<option>Entertainment</option>
+				</select>
+			</div>
+      <textarea v-model="state.content" class="text-area">{{ state.content }}</textarea>
+      <button @click="savePost" class="save-btn">Save</button>
     </div>
   </div>
 </template>
@@ -41,11 +67,29 @@ const closeModal = () => {
 	}
 	
 	.popout-content {
-		width: 100%;
-		height: 100%;
+		width: 80%;
+		height: 80%;
+		display: flex;
+		flex-direction: column;
 	}
 	
 	.close-btn {
-		
+		width: 30px;
+		align-self: flex-end;
+	}
+	
+	.save-btn {
+		width: 80px;
+		margin-top: 10px;
+		align-self: flex-end;
+	}
+	
+	.form-group {
+		display: flex;
+		align-items: center;
+	}
+	
+	.form-group label {
+		padding-bottom: 12px;
 	}
 </style>

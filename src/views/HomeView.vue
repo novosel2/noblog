@@ -10,13 +10,6 @@ const state = reactive({
 	isLoading: true
 });
 
-var blog = reactive({
-	id: '',
-	title: '',
-	tag: '',
-	content: ''
-});
-
 onMounted(async () => {
 	try {
 		const response = await axios.get('https://localhost:8000/api/articles');
@@ -52,7 +45,7 @@ const handleDelete = (id) => {
 		<BlogForm @new-blog-created="addNewBlog" />
 		<hr />
 		<div class="loader" v-if="state.isLoading"></div>
-		<Blog v-else @blog-deleted="handleDelete" v-for="blog in state.blogs" :key="blog.id" :id="blog.id" :title="blog.title" :content="blog.content" :tag="blog.tag" />
+		<Blog v-else @blog-deleted="handleDelete" v-for="blog in state.blogs" :key="blog.id" :blog="blog" />
 	</div>
 </template>
 

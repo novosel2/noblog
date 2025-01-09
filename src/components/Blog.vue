@@ -1,15 +1,15 @@
 <script setup>
-import { defineEmits } from 'vue';
+import { defineEmits, ref } from 'vue';
 import axios from 'axios';
+import PopoutBlog from './PopoutBlog.vue';
 
 const emit = defineEmits();
 
 defineProps({
-	id: String,
-	title: String,
-	content: String,
-	tag: String
+	blog: Object
 });
+
+var isEditActive = ref(false);
 
 const handleDelete = async (id) => {
 	try {
@@ -19,16 +19,31 @@ const handleDelete = async (id) => {
 		console.error('Error while deleting blog', error);
 	}
 }
+
+const updateBlog = async (updatedBlog) => {
+	try {
+		
+	} catch (error) {
+		
+	} finally {
+		isEditActive.value = false;
+	}
+}
+
+const showEdit = () => {
+	isEditActive.value = !isEditActive.value;
+};
 </script>
 
 <template>
 	<div class="blog">
-		<h2>{{ title }}</h2>
-		<span @click="handleDelete(id)" class="deleteSpan">&#10005;</span>
-		<span class="editSpan">Edit</span>
-		<p class="tag">{{ tag }}</p>
-		<p class="content">{{ content }}</p>
+		<h2>{{ blog.title }}</h2>
+		<span @click="handleDelete(blog.id)" class="deleteSpan">&#10005;</span>
+		<span @click="showEdit" class="editSpan">Edit</span>
+		<p class="tag">{{ blog.tag }}</p>
+		<p class="content">{{ blog.content }}</p>
 		<p class="author">Mateo Novosel</p>
+		<PopoutBlog v-if="isEditActive" @close-popout="showEdit" @save-blog="updateBlog" :blog="blog"/>
 	</div>
 </template>
 
