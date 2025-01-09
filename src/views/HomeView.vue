@@ -37,6 +37,27 @@ const handleDelete = (id) => {
 	
 	state.blogs.splice(index, 1);
 }
+
+const handleUpdate = (id, updatedBlog) => {
+	let index = state.blogs.map(x => {
+		return x.id;
+	}).indexOf(id);
+	
+	let newBlog = {
+		id: id,
+		title: updatedBlog.title,
+		content: updatedBlog.content,
+		tag: updatedBlog.tag
+	};
+	
+	state.blogs.splice(index, 1);
+	
+	state.blogs = [
+		...state.blogs.splice(0, index),
+		newBlog,
+		...state.blogs.splice(index)
+	];
+}
 </script>
 
 <template>
@@ -45,7 +66,7 @@ const handleDelete = (id) => {
 		<BlogForm @new-blog-created="addNewBlog" />
 		<hr />
 		<div class="loader" v-if="state.isLoading"></div>
-		<Blog v-else @blog-deleted="handleDelete" v-for="blog in state.blogs" :key="blog.id" :blog="blog" />
+		<Blog v-else @blog-deleted="handleDelete" @blog-updated="handleUpdate" v-for="blog in state.blogs" :key="blog.id" :blog="blog" />
 	</div>
 </template>
 
@@ -59,6 +80,7 @@ const handleDelete = (id) => {
 		align-items: center;
 		flex-direction: column;
 		height: 100vh;
+		margin-bottom: 400px;
 	}
 	
 	hr {

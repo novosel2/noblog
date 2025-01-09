@@ -5,16 +5,16 @@ import PopoutBlog from './PopoutBlog.vue';
 
 const emit = defineEmits();
 
-defineProps({
+const props = defineProps({
 	blog: Object
 });
 
 var isEditActive = ref(false);
 
-const handleDelete = async (id) => {
+const handleDelete = async () => {
 	try {
-		await axios.delete(`https://localhost:8000/api/articles/delete/${id}`)
-		emit('blog-deleted', id);
+		await axios.delete(`https://localhost:8000/api/articles/delete/${props.blog.id}`)
+		emit('blog-deleted', props.blog.id);
 	} catch (error) {
 		console.error('Error while deleting blog', error);
 	}
@@ -22,9 +22,11 @@ const handleDelete = async (id) => {
 
 const updateBlog = async (updatedBlog) => {
 	try {
-		
+		await axios.put(`https://localhost:8000/api/articles/update-article/${props.blog.id}`, updatedBlog);
+		emit('blog-updated', props.blog.id, updatedBlog);
+		console.log(updatedBlog);
 	} catch (error) {
-		
+		console.error('Error while updating blog', error);
 	} finally {
 		isEditActive.value = false;
 	}
