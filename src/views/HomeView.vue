@@ -68,23 +68,47 @@ const handleUpdate = (id, updatedBlog) => {
 		<div class="loader" v-if="state.isLoading"></div>
 		<Blog v-else @blog-deleted="handleDelete" @blog-updated="handleUpdate" v-for="blog in state.blogs" :key="blog.id" :blog="blog" />
 	</div>
+	
+	<footer class="footer">
+  	<p>&copy; 2025 Mateo Novosel. All rights reserved.</p>
+	</footer>
 </template>
 
 <style scoped>
 	h1 {
 		margin-bottom: 40px;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
 	}
 
 	.container {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
-		height: 100vh;
-		margin-bottom: 400px;
+		height: auto;
+		padding-bottom: 60px;
+	}
+	
+	.footer {
+		position: relative;
+		bottom: 0;
+		width: 100%;
+		background-color: #363636;
+		color: white;
+		text-align: center;
+		padding: 15px 0px 15px 0px;
+		font-size: 14px;
+		margin-top: auto;
+		box-shadow: 1px 1px 10px #707070
+	}
+
+	.footer p {
+		margin: 0;
 	}
 	
 	hr {
 		margin-top: 50px;
-		width: 35%;
+		width: 45%;
+		border-color: gray;
 	}
 </style>

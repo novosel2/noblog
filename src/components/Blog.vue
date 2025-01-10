@@ -34,6 +34,10 @@ const updateBlog = async (updatedBlog) => {
 
 const showEdit = () => {
 	isEditActive.value = !isEditActive.value;
+	if (isEditActive.value) {
+		document.body.style.paddingRight = `${window.innerWidth -  document.documentElement.clientWidth}px`;
+		document.body.classList.add('no-scroll');
+	}
 };
 </script>
 
@@ -52,10 +56,12 @@ const showEdit = () => {
 <style scoped>
 	.blog {
 		margin-top: 60px;
-		box-shadow: 1px 1px 10px black;
+		box-shadow: 1px 1px 10px #707070;
 		width: 600px;
 		height: auto;
 		padding: 20px 10px 10px 20px;
+		background-color: #363636;
+		color: white;
 	}
 	
 	.editSpan {
@@ -63,7 +69,7 @@ const showEdit = () => {
 		padding-right: 15px;
 		padding-top: 3px;
 		text-decoration: underline;
-		color: blue;
+		color: yellow;
 	}
 	
 	.editSpan:hover {
