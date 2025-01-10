@@ -71,6 +71,10 @@ const handleSubmit = async () => {
 		color: #BBBBBB;
 	}
 	
+	input:focus {
+		outline: none;
+	}
+	
 	textarea {
 		width: 100%; 
 		height: 100px;
@@ -95,6 +99,10 @@ const handleSubmit = async () => {
 		background-color: #444;
 		color: white;
 		border: 2px black inset;
+	}
+	
+	select:focus {
+		outline: none;
 	}
 	
 	label {
