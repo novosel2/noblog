@@ -14,7 +14,7 @@ const form = reactive({
 const handleSubmit = async () => {
 	const newBlog = {
 		title: form.title,
-		content: form.content.replace(/(\r\n|\n|\r)/g, ' '),
+		content: form.content,
 		tag: form.tag
 	};
 	

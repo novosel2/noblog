@@ -20,6 +20,8 @@ const closePopout = () => {
 }
 
 const savePost = () => {
+	document.body.style.paddingRight = '';
+	document.body.classList.remove('no-scroll');
 	emit('save-blog', state);
 }
 </script>
@@ -111,6 +113,10 @@ const savePost = () => {
 	
 	.form-group label {
 		padding-bottom: 12px;
+	}
+	
+	.text-area {
+		height: 400px;
 	}
 	
 	button:hover {

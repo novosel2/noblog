@@ -47,7 +47,7 @@ const showEdit = () => {
 		<span @click="handleDelete(blog.id)" class="deleteSpan">&#10005;</span>
 		<span @click="showEdit" class="editSpan">Edit</span>
 		<p class="tag">{{ blog.tag }}</p>
-		<p class="content">{{ blog.content }}</p>
+		<p class="content" v-html="blog.content"></p>
 		<p class="author">Mateo Novosel</p>
 		<PopoutBlog v-if="isEditActive" @close-popout="showEdit" @save-blog="updateBlog" :blog="blog"/>
 	</div>
@@ -59,7 +59,7 @@ const showEdit = () => {
 		box-shadow: 1px 1px 10px #707070;
 		width: 600px;
 		height: auto;
-		padding: 20px 10px 10px 20px;
+		padding: 25px 10px 10px 20px;
 		background-color: #363636;
 		color: white;
 	}
@@ -97,14 +97,18 @@ const showEdit = () => {
 		font-size: 17px;
 		margin: 0px;
 		margin-right: 7px;
+		color: #8e8e8e;
 	}
 	
 	.tag {
 		margin: 0;
 		font-size: 20px;
+		color: #8e8e8e;
 	}
 	
 	.content {
 		font-size: 16px;
+		line-height: 24px;
+		white-space: pre-line;
 	}
 </style>

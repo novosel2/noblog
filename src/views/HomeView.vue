@@ -1,7 +1,6 @@
 <script setup>
 import BlogForm from '@/components/BlogForm.vue';
 import Blog from '@/components/Blog.vue';
-import PopoutBlog from '@/components/PopoutBlog.vue';
 import { reactive, onMounted } from 'vue';
 import axios from 'axios';
 
@@ -70,22 +69,23 @@ const handleUpdate = (id, updatedBlog) => {
 	</div>
 	
 	<footer class="footer">
-  	<p>&copy; 2025 Mateo Novosel. All rights reserved.</p>
+		<p>&copy; 2025 Mateo Novosel. All rights reserved.</p>
 	</footer>
 </template>
-
+	
 <style scoped>
 	h1 {
 		margin-bottom: 40px;
 		color: white;
 		font-family: Arial, Helvetica, sans-serif;
 	}
-
+	
 	.container {
 		display: flex;
+		flex: 1;
 		align-items: center;
 		flex-direction: column;
-		height: auto;
+		height: fit-content;
 		padding-bottom: 60px;
 	}
 	
@@ -98,8 +98,7 @@ const handleUpdate = (id, updatedBlog) => {
 		text-align: center;
 		padding: 15px 0px 15px 0px;
 		font-size: 14px;
-		margin-top: auto;
-		box-shadow: 1px 1px 10px #707070
+		box-shadow: 1px 1px 10px #707070;
 	}
 
 	.footer p {
