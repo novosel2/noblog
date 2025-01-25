@@ -11,6 +11,10 @@ const props = defineProps({
 
 var isEditActive = ref(false);
 
+const options = { month: 'short', day: 'numeric', year: 'numeric' };
+const date = new Date(props.blog.dateCreated);
+const formattedDate = date.toLocaleDateString('en-US', options);
+
 const handleDelete = async () => {
 	try {
 		await axios.delete(`https://localhost:8000/api/articles/delete/${props.blog.id}`)
@@ -48,7 +52,10 @@ const showEdit = () => {
 		<span @click="showEdit" class="editSpan">Edit</span>
 		<p class="tag">{{ blog.tag }}</p>
 		<p class="content" v-html="blog.content"></p>
-		<p class="author">Mateo Novosel</p>
+		<div class="blog-footer">
+			<p class="date">{{ formattedDate }}</p>
+			<p class="author">Mateo Novosel</p>
+		</div>
 		<PopoutBlog v-if="isEditActive" @close-popout="showEdit" @save-blog="updateBlog" :blog="blog"/>
 	</div>
 </template>
@@ -62,6 +69,22 @@ const showEdit = () => {
 		padding: 25px 10px 10px 20px;
 		background-color: #363636;
 		color: white;
+	}
+	
+	.blog-footer {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.author, .date {
+		font-size: 17px;
+		color: #8e8e8e;
+		margin: 0px;
+		margin-top: 10px;
+	}
+	
+	.author {
+		margin-right: 10px;
 	}
 	
 	.editSpan {
@@ -90,14 +113,6 @@ const showEdit = () => {
 		font-size: 26px;
 		margin: 0;
 		width: fit-content;
-	}
-	
-	.author {
-		float: right;
-		font-size: 17px;
-		margin: 0px;
-		margin-right: 7px;
-		color: #8e8e8e;
 	}
 	
 	.tag {
