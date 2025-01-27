@@ -17,7 +17,7 @@ const formattedDate = date.toLocaleDateString('en-US', options);
 
 const handleDelete = async () => {
 	try {
-		await axios.delete(`https://localhost:8000/api/articles/delete/${props.blog.id}`)
+		await axios.delete(`https://noblogapi.azurewebsites.net/api/articles/delete/${props.blog.id}`)
 		emit('blog-deleted', props.blog.id);
 	} catch (error) {
 		console.error('Error while deleting blog', error);
@@ -26,7 +26,7 @@ const handleDelete = async () => {
 
 const updateBlog = async (updatedBlog) => {
 	try {
-		await axios.put(`https://localhost:8000/api/articles/update-article/${props.blog.id}`, updatedBlog);
+		await axios.put(`https://noblogapi.azurewebsites.net/api/articles/update-article/${props.blog.id}`, updatedBlog);
 		emit('blog-updated', props.blog.id, updatedBlog);
 		console.log(updatedBlog);
 	} catch (error) {

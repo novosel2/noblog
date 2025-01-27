@@ -11,7 +11,7 @@ const state = reactive({
 
 onMounted(async () => {
 	try {
-		const response = await axios.get('https://localhost:8000/api/articles');
+		const response = await axios.get('https://noblogapi.azurewebsites.net/api/articles');
 		state.blogs = response.data;
 	} catch (error) {
 		console.error('Error while getting all blogs', error);
@@ -22,7 +22,7 @@ onMounted(async () => {
 
 const addNewBlog = async () => {
 	try {
-		const response = await axios.get('https://localhost:8000/api/articles');
+		const response = await axios.get('https://noblogapi.azurewebsites.net/api/articles');
 		state.blogs = response.data;
 	} catch (error) {
 		console.error('Error while getting all blogs', error);
