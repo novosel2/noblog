@@ -23,7 +23,7 @@ const handleSubmit = async () => {
 	form.tag = 'General';
 	
 	try {
-		await axios.post('https://localhost:8000/api/articles/create-article', newBlog);
+		await axios.post('https://noblogapi.azurewebsites.net/api/articles/create-article', newBlog);
 		emit('new-blog-created');
 	} catch (error) {
 		console.error('Error adding new blog', error);
